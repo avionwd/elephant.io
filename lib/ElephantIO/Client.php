@@ -98,7 +98,10 @@ class Client {
 
                 $response = json_decode(implode(':', $sess), true);
                 $name = $response['name'];
-                $data = $response['args'][0];
+                $data = null;
+                if (isset($response['args'])) {
+                    $data = $response['args'][0];
+                }
 
                 $this->stdout('debug', 'Receive event "' . $name . '" with data "' . $data . '"');
 
